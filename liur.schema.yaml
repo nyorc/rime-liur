@@ -9,7 +9,7 @@ schema:
   author:
     - 制作人
   description: |
-    蝦米-拼音-注音反查輸入法
+    蝦米-注音反查輸入法
   dependencies:
 
 switches:
@@ -39,7 +39,7 @@ engine:
     - selector
     - navigator
     - express_editor
-#    - fluency_editor	#  語句流
+#    - fluency_editor #  語句流
   segmentors:
     - ascii_segmentor
     - matcher
@@ -63,9 +63,9 @@ engine:
 
   filters:
     - simplifier
-    - simplifier@liu_w2c	#無蝦米字碼反查
+    - simplifier@liu_w2c  #無蝦米字碼反查
     - simplifier@zh_tw
-    - uniquifier	#過濾重複的候選字，有可能來自繁簡轉換
+    - uniquifier  #過濾重複的候選字，有可能來自繁簡轉換
     - reverse_lookup_filter@phonetic_reverse_lookup
     # - single_char_filter  #單字優先
 
@@ -80,13 +80,13 @@ liu_w2c:
   tags: [ pinyin, mkst, phonetic ]
   tips: all
 
-zh_tw:	#只針對拼音及注音反查進行台灣用語轉換
+zh_tw:  #只針對拼音及注音反查進行台灣用語轉換
   opencc_config: t2tw.json
   option_name: zh_tw
   tags: [ pinyin, phonetic ]
 
 simplifier:
-  tips: all	# 簡化字模式下提示對應的傳統漢字
+  tips: all # 簡化字模式下提示對應的傳統漢字
 
 speller:
   alphabet: "abcdefghijklmnopqrstuvwxyz[];',."
@@ -131,7 +131,7 @@ liurqry:
   suffix: "'"
   tips: 【反查讀音】
   closing_tips: 【蝦米】
-  initial_quality: 300	# 調整該編譯器出字優先度
+  initial_quality: 300  # 調整該編譯器出字優先度
   tag: liurqry
 
 pinyin:
@@ -146,7 +146,7 @@ pinyin:
     - xform/([jqxy])v/$1u/
   tips: 【拼音】
   closing_tips: 【蝦米】
-  initial_quality: 0.2	# 調整該編譯器出字優先度
+  initial_quality: 0.2  # 調整該編譯器出字優先度
 
 phonetic:
   tag: phonetic
@@ -154,13 +154,13 @@ phonetic:
   suffix: "'"
   dictionary: terra_pinyin
   prism: bopomofo_tw
-  preedit_format:	#menu反查之輸入法 顯示
+  preedit_format: #menu反查之輸入法 顯示
     - "xlit|1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/- 6347'|ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄧㄨㄩㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦˉˊˇˋ˙ |"
-  comment_format:	#menu 提示 字碼 顯示
+  comment_format: #menu 提示 字碼 顯示
     - "xlit|abcdefghijklmnopqrstuvwxyz[];',.|abcdefghijklmnopqrstuvwxyz[];',.|"
   tips: 【注音】
   closing_tips: 【蝦米】
-  initial_quality: 1.1	# 調整該編譯器出字優先度
+  initial_quality: 1.1  # 調整該編譯器出字優先度
 
 phonetic_reverse_lookup:
   tags: [ liurqry ]
@@ -202,6 +202,10 @@ punctuator:
 
 key_binder:
   import_preset: default
+  bindings:
+    - { when: always, accept: Control+period, toggle: simplification }  # 進行簡繁切換
+    - { when: always, accept: Control+apostrophe, toggle: liu_w2c }     # 顯示同音字
+    - { when: always, accept: Control+slash, toggle: extended_charset } # 切換擴充字集
 
 recognizer:
   import_preset: default

@@ -106,6 +106,27 @@ $ node develop/create-english.dict.js
 
 英文單字， 字碼小於 3 碼者，需補上 「;」 當結束 (或可以直接按 enter )
 ![rime-eng-word-less-than-3](https://user-images.githubusercontent.com/11897061/146645685-66060eb2-f6d0-47c1-b5f5-abaf33217e6f.png)
+
+## 自定範例
+- liur.custom.yaml
+  ```
+  patch:
+    translator/enable_completion: true  #打開逐碼提示碼
+    "switches/@2/reset": 0  #反查開關 (0為關閉，1為開啟)
+  ```
+
+- default.custom.yaml
+  ```
+  patch:
+    # Only use liur input method
+    schema_list:
+      - schema: liur
+
+    # no fold_options
+    switcher:
+      fold_options: false
+  ```
+
 ## FAQ
 ### 更新到 Monterey 後，無法安裝鼠鬚管
 
