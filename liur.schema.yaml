@@ -201,11 +201,15 @@ punctuator:
 #  import_preset: alternative
 
 key_binder:
-  import_preset: default
+  __patch:
+    bindings/+:
+      - { when: always, accept: Control+period, toggle: simplification }  # 進行簡繁切換
+      - { when: always, accept: Control+apostrophe, toggle: liu_w2c }     # 顯示同音字
+      - { when: always, accept: Control+slash, toggle: extended_charset } # 切換擴充字集
   bindings:
-    - { when: always, accept: Control+period, toggle: simplification }  # 進行簡繁切換
-    - { when: always, accept: Control+apostrophe, toggle: liu_w2c }     # 顯示同音字
-    - { when: always, accept: Control+slash, toggle: extended_charset } # 切換擴充字集
+    __patch:
+      - key_bindings:/paging_with_minus_equal
+      - key_bindings:/emacs_editing
 
 recognizer:
   import_preset: default
