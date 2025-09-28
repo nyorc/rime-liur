@@ -1,4 +1,3 @@
-#錯誤查看%TEMP%\rime.weasel
 # Rime schema settings
 # encoding: utf-8
 #
@@ -46,7 +45,6 @@ engine:
     - abc_segmentor
     - affix_segmentor@mkst
     - affix_segmentor@liurqry
-    - affix_segmentor@pinyin
     - affix_segmentor@phonetic
 #    - punct_segmentor
     - fallback_segmentor
@@ -58,7 +56,6 @@ engine:
     - table_translator@fixed
     - table_translator@liurqry
     - table_translator
-    - script_translator@pinyin
     - script_translator@phonetic
 
   filters:
@@ -77,13 +74,13 @@ liu_w2c:
   opencc_config: liu_w2c.json
   option_name: liu_w2c
   show_in_comment: true
-  tags: [ pinyin, mkst, phonetic ]
+  tags: [ mkst, phonetic ]
   tips: all
 
-zh_tw:  #只針對拼音及注音反查進行台灣用語轉換
+zh_tw:  #只針對注音反查進行台灣用語轉換
   opencc_config: t2tw.json
   option_name: zh_tw
-  tags: [ pinyin, phonetic ]
+  tags: [ phonetic ]
 
 simplifier:
   tips: all # 簡化字模式下提示對應的傳統漢字
@@ -133,20 +130,6 @@ liurqry:
   closing_tips: 【蝦米】
   initial_quality: 300  # 調整該編譯器出字優先度
   tag: liurqry
-
-pinyin:
-  tag: pinyin
-  dictionary: luna_pinyin
-  prefix: "`"
-# 漢語拼音輸入以「`」引導
-  suffix: "'"
-  preedit_format: &pinyin
-    - xform/([nl])v/$1ü/
-    - xform/([nl])ue/$1üe/
-    - xform/([jqxy])v/$1u/
-  tips: 【拼音】
-  closing_tips: 【蝦米】
-  initial_quality: 0.2  # 調整該編譯器出字優先度
 
 phonetic:
   tag: phonetic
@@ -219,8 +202,6 @@ recognizer:
     url: ^(www[.]|https?:|ftp:|mailto:).*$
     phonetic: "';[1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/6347-]*'?$" # 「-」為「ㄦ」，移到最後面，讓正則可正確抓取
 # 注音反查引導鍵
-    pinyin: "`[a-z']*'?$"
-# 漢語拼音輸入引導鍵
     mkst: "^;[a-z,.'`]*$"
 #造詞引導
     liurqry: ";;[a-z']*'?$"
