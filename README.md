@@ -89,24 +89,6 @@
 因已安裝好注音，此時重新部署只需要3~5秒就行
 除非將整個build目錄刪除使其重新產生
 
-## 增加英文字典(預設關閉)
-- 感謝 [yozian](https://github.com/yozian) 大大提供
-- 英文字典來源於 [Github  dwyl/english-words](https://github.com/dwyl/english-words)
-- 現行已產生出英文字典檔，預設關閉
-- 若要開啟英文字典，打開`liur.extended.dict.yaml`，將`# - liur_English`改成`- liur_English`(即刪除前面的`#`)
-- 或可使用 nodejs 執行以下指令後，自行手動建立或更新 `Rime/liur_English.dict.yaml` 檔案
-``` bash
-$ node develop/create-english.dict.js 
-```
-
-功能如下：
-
-方便打英文時自動帶出英文單字
-![rime-eng-word](https://user-images.githubusercontent.com/11897061/146645594-a41d499f-3ba6-4aab-9ab1-94074a3a7c2f.png)
-
-英文單字， 字碼小於 3 碼者，需補上 「;」 當結束 (或可以直接按 enter )
-![rime-eng-word-less-than-3](https://user-images.githubusercontent.com/11897061/146645685-66060eb2-f6d0-47c1-b5f5-abaf33217e6f.png)
-
 ## 自定範例
 - liur.custom.yaml
   ```
